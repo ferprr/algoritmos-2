@@ -1,0 +1,11 @@
+1495000 1060
+1 1 1 1 2 3 1 2 2 4 // Qtde de trechos da ciclovia partindo/chegando no ponto de interesse
+4 3 100000
+5 4 250000
+6 5 50000
+8 7 220000
+8 0 220000
+9 2 90000
+9 7 90000
+9 5 125000
+9 1 350000
