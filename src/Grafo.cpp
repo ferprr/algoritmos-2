@@ -9,6 +9,27 @@ using namespace std;
 
 Grafo::Grafo(int n) {
     this->nos = n;
+    this->custo_minimo = 0;
+    this->atratividade_agregada = 0;
+    this->partidas_chegadas = new int[nos];
+    this->atratividade = new int[nos];
+
+    //inicializando vetor de atratividade de cada ponto
+    for (int i=0; i<nos; i++) {
+        atratividade[i] = 0;
+    }
+    // for (int i=0; i<nos; i++) {
+    //     cout << atratividade[i] << " ";
+    // }
+    //inicializando vetor de partidas/chegadas em cada ponto
+    for (int i = 0; i < nos; i++) {
+        partidas_chegadas[i] = 0;
+    }
+    // for (int i = 0; i < nos; i++) {
+    //     cout << partidas_chegadas[i] << " ";
+    // }
+
+    inicializa_matriz();
 }
 Grafo::~Grafo(){
     delete this;
@@ -23,6 +44,7 @@ void Grafo::inicializa_matriz() {
             ciclovia[i][j] = 0;
         }
     }
+
 }
 void Grafo::imprime_matriz(){
     for (int i=0; i<nos; i++) {
@@ -37,8 +59,8 @@ void Grafo::set_custo(int pi, int pj, int ct) {
     ciclovia[pj][pi] = ct;
 
 }
-void Grafo::set_atratividade(int valor) {
-    atratividade.push_back(valor);
+void Grafo::set_atratividade(int no, int valor) {
+    atratividade[no] = valor;
 }
 void Grafo::primMST() {
     int *parent = new int[nos];
@@ -76,29 +98,18 @@ int Grafo::minKey(int key[], bool mstSet[]) {
 }
 void Grafo::printMST(int parent[]) {  
 
-    int custo, atrat = 0;
-    int *partidas_chegadas = new int[nos];
-
-    for (int i = 0; i < nos; i++) {
-        partidas_chegadas[i] = 0;
-    }
-    
-    for (int i = 0; i < nos; i++) {
-        cout << partidas_chegadas[i] << " ";
-    }
-
     cout<<"Edge \tWeight\n";  
     for (int i = 1; i < nos; i++) {
         cout<<parent[i]<<" - "<<i<<" \t"<<ciclovia[i][parent[i]]<<" \n";  
-        custo += ciclovia[i][parent[i]];
-        atrat += atratividade.at(i) + atratividade.at(parent[i]);
+        custo_minimo += ciclovia[i][parent[i]];
+        atratividade_agregada += atratividade[i] + atratividade[parent[i]];
 
         partidas_chegadas[parent[i]]++;
         partidas_chegadas[i]++;
     }
 
-    cout << "custo: " << custo << endl;
-    cout << "atratividade: " << atrat << endl;
+    cout << "custo: " << custo_minimo << endl;
+    cout << "atratividade: " << atratividade_agregada << endl;
 
     for (int i = 0; i < nos; i++) {
         cout << partidas_chegadas[i] << " ";

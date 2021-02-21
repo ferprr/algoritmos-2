@@ -9,8 +9,11 @@ using namespace std;
 class Grafo {
 
     int nos;
+    int custo_minimo;
+    int atratividade_agregada;
     int **ciclovia;
-    vector<int> atratividade;
+    int *atratividade;
+    int *partidas_chegadas;
 
     public:
         Grafo(int n);
@@ -21,7 +24,7 @@ class Grafo {
         void primMST();
         void printMST(int parent[]);
         int minKey(int key[], bool mstSet[]);
-        void set_atratividade(int valor);
+        void set_atratividade(int no, int valor);
 };
 
 #endif

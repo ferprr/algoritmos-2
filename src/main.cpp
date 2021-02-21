@@ -10,23 +10,18 @@ int main() {
     
     int n, t;
     cin >> n >> t;
-    cout << n << t << endl;
+    //cout << n << t << endl;
 
     Grafo bellevile(n);
 
     for (int i=0; i<n; i++) {
         int atratividade;
         cin >> atratividade;
-        bellevile.set_atratividade(atratividade);
-        //cout << atratividade << endl;
+        bellevile.set_atratividade(i, atratividade);
     }
 
-    bellevile.inicializa_matriz();
-    bellevile.imprime_matriz();
-
     for (int i=0; i<t; i++) {
-        int pi, pj;
-        long ct;
+        int pi, pj, ct;
         cin >> pi >> pj >> ct;
         bellevile.set_custo(pi, pj, ct);
     }
