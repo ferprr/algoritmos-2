@@ -66,4 +66,6 @@ void Grafo::imprime_matriz(){
 }
 void Grafo::set_custo(int pi, int pj, int ct) {
     ciclovia[pi][pj] = ct;
+    //ciclovia[pj][pi] = ct;
+
 }
