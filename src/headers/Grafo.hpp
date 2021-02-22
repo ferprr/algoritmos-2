@@ -14,6 +14,7 @@ class Grafo {
     int **ciclovia;
     int *atratividade;
     int *partidas_chegadas;
+    int **mst;
 
     public:
         Grafo(int n);
@@ -22,8 +23,7 @@ class Grafo {
         void imprime_matriz();
         void set_custo(int pi, int pj, int ct);
         void primMST();
-        void printMST(int parent[]);
-        int minKey(int key[], bool mstSet[]);
+        void printMST();
         void set_atratividade(int no, int valor);
 };
 
