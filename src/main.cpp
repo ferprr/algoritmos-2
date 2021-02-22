@@ -10,7 +10,6 @@ int main() {
     
     int n, t;
     cin >> n >> t;
-    //cout << n << t << endl;
 
     Grafo bellevile(n);
 

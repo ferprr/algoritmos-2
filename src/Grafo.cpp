@@ -18,16 +18,10 @@ Grafo::Grafo(int n) {
     for (int i=0; i<nos; i++) {
         atratividade[i] = 0;
     }
-    // for (int i=0; i<nos; i++) {
-    //     cout << atratividade[i] << " ";
-    // }
     //inicializando vetor de partidas/chegadas em cada ponto
     for (int i = 0; i < nos; i++) {
         partidas_chegadas[i] = 0;
     }
-    // for (int i = 0; i < nos; i++) {
-    //     cout << partidas_chegadas[i] << " ";
-    // }
 
     inicializa_matriz();
 }
@@ -77,9 +71,8 @@ void Grafo::primMST() {
     for (int count = 0; count < nos - 1; count++) {
         int u = minKey(key, mstSet);  
         mstSet[u] = true;  
-
         for (int v = 0; v < nos; v++) {
-            if (ciclovia[u][v] && mstSet[v] == false && ciclovia[u][v] < key[v]) {
+            if (ciclovia[u][v] && mstSet[v] == false && ciclovia[u][v] < key[v] || ciclovia[u][v] == key[v] && atratividade[u]+atratividade[v] > atratividade[count]+atratividade[v]) {
                 parent[v] = u, key[v] = ciclovia[u][v];
             } 
         }
@@ -98,9 +91,7 @@ int Grafo::minKey(int key[], bool mstSet[]) {
 }
 void Grafo::printMST(int parent[]) {  
 
-    cout<<"Edge \tWeight\n";  
     for (int i = 1; i < nos; i++) {
-        cout<<parent[i]<<" - "<<i<<" \t"<<ciclovia[i][parent[i]]<<" \n";  
         custo_minimo += ciclovia[i][parent[i]];
         atratividade_agregada += atratividade[i] + atratividade[parent[i]];
 
@@ -108,10 +99,15 @@ void Grafo::printMST(int parent[]) {
         partidas_chegadas[i]++;
     }
 
-    cout << "custo: " << custo_minimo << endl;
-    cout << "atratividade: " << atratividade_agregada << endl;
+    cout << custo_minimo << " " << atratividade_agregada << endl;
 
     for (int i = 0; i < nos; i++) {
         cout << partidas_chegadas[i] << " ";
+    }
+
+    cout << endl;
+
+    for (int i = 1; i < nos; i++) {
+        cout<<parent[i]<<" "<< i <<" "<<ciclovia[i][parent[i]]<< endl;  
     }
 }  
