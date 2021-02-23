@@ -109,7 +109,7 @@ void Grafo::primMST() {
 }
 void Grafo::printMST() {  
 
-    //cálculo da atratividade agregada multiplicando o valor turistico de cada ponto pela quantidade de vezes em que um caminho incide/sai dele na MST.
+    //calcula a atratividade agregada multiplicando o valor turistico de cada ponto pela quantidade de vezes em que um caminho incide/sai dele na MST.
     for (int i=0; i<nos; i++){                            
         this->atratividade_agregada += atratividade[i] * partidas_chegadas[i];
     } 
@@ -122,10 +122,10 @@ void Grafo::printMST() {
 
     cout << endl;
 
-    //impressao dos caminhos resultantes apos gerada a MST.
-    for(int i=0; i<nos; i++){        
-        for (int j=0; j<nos; j++){
-            if (mst[i][j] >= 0){
+    //impressao dos caminhos resultantes apos gerada a MST
+    for(int i=0; i<nos; i++) {        
+        for (int j=0; j<nos; j++) {
+            if (mst[i][j] >= 0) {
                 cout << i << " " << j << " " << mst[i][j] << endl;
                 mst[j][i] = -1;    //marcando como -1 a posicao [j][i] apos impresso a posicao [i][j] para evitar duplicatas.
             }

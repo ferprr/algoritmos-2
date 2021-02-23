@@ -9,8 +9,7 @@ using namespace std;
 class Grafo {
 
     int nos;
-    int custo_minimo;
-    int atratividade_agregada;
+    int custo_minimo, atratividade_agregada;
     int **ciclovia;
     int *atratividade;
     int *partidas_chegadas;
